@@ -66,12 +66,16 @@ CREATE OR REPLACE TYPE Empresario AS OBJECT(
 );
 /
 
+CREATE OR REPLACE TYPE TableClubesDoJogador AS Table OF Clube;
+/
+
 CREATE OR REPLACE TYPE Jogador AS OBJECT(
     nome_completo VARCHAR2(40),
     apelido VARCHAR2(30),
     situacao_medica VARCHAR2(20),
     clube_dono  REF Clube,
     clube_atual REF Clube,
+    lista_clubes TableClubesDoJogador,
     empresario_responsavel REF Empresario,
     valor NUMBER,
     status VARCHAR2(20),
@@ -137,10 +141,4 @@ CREATE OR REPLACE TYPE Goleiro UNDER Jogador(
     num_defesas_dificeis INTEGER,
     gols_sofridos INTEGER
 );
-/
-
-CREATE OR REPLACE TYPE listaDeClubesDoJogador_array AS VARRAY(100) OF Clube;
-/
-
-ALTER TYPE Jogador ADD ATTRIBUTE lista_clubes listaDeClubesDoJogador_array CASCADE;
 /

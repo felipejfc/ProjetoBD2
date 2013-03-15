@@ -59,7 +59,7 @@ CREATE TABLE jogadores OF Jogador(
     CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
     CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
     CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL)
-);
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
 
 CREATE TABLE emprestimos OF Emprestimo(
