@@ -10,7 +10,18 @@ DROP TABLE meio_Ofensivos FORCE;
 DROP TABLE atacantes FORCE;
 DROP TABLE emprestimos FORCE;
 DROP TABLE titulos_por_serie_nt FORCE;
-DROP TABLE lista_clubes_nt FORCE;
+DROP TABLE lista_clubes_goleiro_nt FORCE;
+DROP TABLE titulos_por_serie_goleiro_nt FORCE;
+DROP TABLE lista_clubes_zagueiro_nt FORCE;
+DROP TABLE titulos_por_serie_zagueiro_nt FORCE;
+DROP TABLE lista_clubes_lateral_nt FORCE;
+DROP TABLE titulos_por_serie_lateral_nt FORCE;
+DROP TABLE lista_clubes_volante_nt FORCE;
+DROP TABLE titulos_por_serie_volante_nt FORCE;
+DROP TABLE lista_clubes_meia_ofensivo_nt FORCE;
+DROP TABLE titulos_por_serie_meia_ofensivo_nt FORCE;
+DROP TABLE lista_clubes_atacante_nt FORCE;
+DROP TABLE titulos_por_serie_atacante_nt FORCE;
 
 CREATE TABLE empresarios OF Empresario(
     CONSTRAINT cpf_cnpj_pk PRIMARY KEY(cpf_cnpj),
