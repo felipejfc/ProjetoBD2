@@ -67,7 +67,8 @@ CREATE TABLE goleiros OF Goleiro(
     CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
     CONSTRAINT num_defesas_cons CHECK(num_defesas_dificeis > 0),
     CONSTRAINT gols_sofridos_cons CHECK(gols_sofridos > 0)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_goleiro_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_goleiro_nt);
 
 CREATE TABLE zagueiros OF Zagueiro(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
@@ -88,7 +89,8 @@ CREATE TABLE zagueiros OF Zagueiro(
     CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
     CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
     CONSTRAINT num_desarmes_zagueiro_cons CHECK(num_desarmes > 0)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_zagueiro_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_zagueiro_nt);
 
 CREATE TABLE laterais OF Lateral(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
@@ -111,7 +113,8 @@ CREATE TABLE laterais OF Lateral(
     CONSTRAINT num_desarmes_lateral_cons CHECK(num_desarmes > 0),
     CONSTRAINT cruzamentos_feitos_cons CHECK(cruzamentos_feitos > 0),
     CONSTRAINT cruzamentos_certos_cons CHECK(cruzamentos_certos <= cruzamentos_feitos)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_lateral_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_lateral_nt);
 
 CREATE TABLE volantes OF Volante(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
@@ -134,7 +137,8 @@ CREATE TABLE volantes OF Volante(
     CONSTRAINT num_desarmes_volante_cons CHECK(num_desarmes > 0),
     CONSTRAINT passes_realizados_cons CHECK(passes_realizados > 0),
     CONSTRAINT passes_feitos_cons CHECK(passes_feitos <= passes_realizados)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_volante_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_volante_nt);
 
 CREATE TABLE meio_ofensivos OF Meio_Ofensivo(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
@@ -156,7 +160,8 @@ CREATE TABLE meio_ofensivos OF Meio_Ofensivo(
     CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
     CONSTRAINT num_passes_cons CHECK(num_passes_feitos > 0),
     CONSTRAINT assistencias_cons CHECK(assistencias <= num_passes_feitos)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_meia_ofensivo_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_meia_ofensivo_nt);
 
 CREATE TABLE atacantes OF Atacante(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
@@ -177,4 +182,5 @@ CREATE TABLE atacantes OF Atacante(
     CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
     CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
     CONSTRAINT num_finalizacao_cons CHECK(num_finalizacao > gols_marcados)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
+)NESTED TABLE lista_clubes STORE AS lista_clubes_atacante_nt
+(NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_atacante_nt);
