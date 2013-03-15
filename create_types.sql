@@ -15,7 +15,7 @@ DROP TYPE Volante FORCE;
 DROP TYPE Goleiro FORCE;
 DROP TYPE Lateral FORCE;
 DROP TYPE Zagueiro FORCE;
-DROP TYPE listaDeClubesDoJogador_array FORCE;
+DROP TYPE TableClubesDoJogador FORCE;
 
 CREATE OR REPLACE TYPE listaTelefone_array AS VARRAY(100) OF VARCHAR2(40);
 /
@@ -66,7 +66,7 @@ CREATE OR REPLACE TYPE Empresario AS OBJECT(
 );
 /
 
-CREATE OR REPLACE TYPE TableClubesDoJogador AS Table OF Clube;
+CREATE OR REPLACE TYPE TableClubesDoJogador AS TABLE OF Clube;
 /
 
 CREATE OR REPLACE TYPE Jogador AS OBJECT(

@@ -15,4 +15,4 @@ DROP TYPE Volante FORCE;
 DROP TYPE Goleiro FORCE;
 DROP TYPE Lateral FORCE;
 DROP TYPE Zagueiro FORCE;
-DROP TYPE listaDeClubesDoJogador_array FORCE;
+DROP TYPE TableClubesDoJogador FORCE;

@@ -10,6 +10,8 @@ DROP TABLE volantes FORCE;
 DROP TABLE meio_Ofensivos FORCE;
 DROP TABLE atacantes FORCE;
 DROP TABLE emprestimos FORCE;
+DROP TABLE titulos_por_serie_nt FORCE;
+DROP TABLE lista_clubes_nt FORCE;
 
 CREATE TABLE empresarios OF Empresario(
     CONSTRAINT cpf_cnpj_pk PRIMARY KEY(cpf_cnpj),
