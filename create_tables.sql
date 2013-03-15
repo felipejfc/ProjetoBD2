@@ -2,7 +2,6 @@
 DROP TABLE clubes FORCE;
 DROP TABLE vendas FORCE;
 DROP TABLE series FORCE;
-DROP TABLE jogadores FORCE;
 DROP TABLE goleiros FORCE;
 DROP TABLE zagueiros FORCE;
 DROP TABLE laterais FORCE;
@@ -43,7 +42,12 @@ CREATE TABLE series OF Serie(
     CONSTRAINT regulamento_cons CHECK(regulamento is NOT NULL)
 );
 
-CREATE TABLE jogadores OF Jogador(
+CREATE TABLE emprestimos OF Emprestimo(
+    CONSTRAINT data_emprestimo_cons CHECK(data is NOT NULL),
+    CONSTRAINT jogador_emprestado_cons CHECK(jogador_emprestado is NOT NULL)
+);
+
+CREATE TABLE goleiros OF Goleiro(
     CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
     CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
     CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
@@ -60,44 +64,117 @@ CREATE TABLE jogadores OF Jogador(
     CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
     CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
     CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
-    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL)
-)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
-
-
-CREATE TABLE emprestimos OF Emprestimo(
-    CONSTRAINT data_emprestimo_cons CHECK(data is NOT NULL),
-    CONSTRAINT jogador_emprestado_cons CHECK(jogador_emprestado is NOT NULL)
-);
-
-
-CREATE TABLE goleiros OF Goleiro(
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
     CONSTRAINT num_defesas_cons CHECK(num_defesas_dificeis > 0),
     CONSTRAINT gols_sofridos_cons CHECK(gols_sofridos > 0)
-);
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
+CREATE TABLE zagueiros OF Zagueiro(
+    CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
+    CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
+    CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
+    CONSTRAINT tipo_situacao_medica CHECK (UPPER(situacao_medica) IN ('CONTUNDIDO', 'VOLTANDO-CONTUSAO',   'SAUDAVEL')),
+    CONSTRAINT clube_dono_cons CHECK(clube_dono is NOT NULL),
+    CONSTRAINT clube_atual_cons CHECK(clube_atual is NOT NULL),
+    CONSTRAINT empresario_resp_cons CHECK(empresario_responsavel is NOT NULL),
+    CONSTRAINT valor_cons CHECK(valor > 0),
+    CONSTRAINT status_cons CHECK(status is NOT NULL),
+    CONSTRAINT tipo_status CHECK (UPPER(status) IN ('A-VENDA', 'LIBERADO',   'COM-CONTRATO')),
+    CONSTRAINT total_jogos_cons CHECK(total_jogos > 0),
+    CONSTRAINT gols_marcados_cons CHECK(gols_marcados is NOT NULL),
+    CONSTRAINT faltas_cometidas_cons CHECK(faltas_cometidas > 0),
+    CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
+    CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
+    CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
+    CONSTRAINT num_desarmes_zagueiro_cons CHECK(num_desarmes > 0)
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
-CREATE TABLE zagueiros OF Zagueiro
-    (CONSTRAINT num_desarmes_zagueiro_cons CHECK(num_desarmes > 0)
-);
-
-CREATE TABLE laterais OF Lateral
-    (CONSTRAINT num_desarmes_lateral_cons CHECK(num_desarmes > 0),
+CREATE TABLE laterais OF Lateral(
+    CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
+    CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
+    CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
+    CONSTRAINT tipo_situacao_medica CHECK (UPPER(situacao_medica) IN ('CONTUNDIDO', 'VOLTANDO-CONTUSAO',   'SAUDAVEL')),
+    CONSTRAINT clube_dono_cons CHECK(clube_dono is NOT NULL),
+    CONSTRAINT clube_atual_cons CHECK(clube_atual is NOT NULL),
+    CONSTRAINT empresario_resp_cons CHECK(empresario_responsavel is NOT NULL),
+    CONSTRAINT valor_cons CHECK(valor > 0),
+    CONSTRAINT status_cons CHECK(status is NOT NULL),
+    CONSTRAINT tipo_status CHECK (UPPER(status) IN ('A-VENDA', 'LIBERADO',   'COM-CONTRATO')),
+    CONSTRAINT total_jogos_cons CHECK(total_jogos > 0),
+    CONSTRAINT gols_marcados_cons CHECK(gols_marcados is NOT NULL),
+    CONSTRAINT faltas_cometidas_cons CHECK(faltas_cometidas > 0),
+    CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
+    CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
+    CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
+    CONSTRAINT num_desarmes_lateral_cons CHECK(num_desarmes > 0),
     CONSTRAINT cruzamentos_feitos_cons CHECK(cruzamentos_feitos > 0),
     CONSTRAINT cruzamentos_certos_cons CHECK(cruzamentos_certos <= cruzamentos_feitos)
-);
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
-CREATE TABLE volantes OF Volante
-    (CONSTRAINT num_desarmes_volante_cons CHECK(num_desarmes > 0),
+CREATE TABLE volantes OF Volante(
+    CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
+    CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
+    CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
+    CONSTRAINT tipo_situacao_medica CHECK (UPPER(situacao_medica) IN ('CONTUNDIDO', 'VOLTANDO-CONTUSAO',   'SAUDAVEL')),
+    CONSTRAINT clube_dono_cons CHECK(clube_dono is NOT NULL),
+    CONSTRAINT clube_atual_cons CHECK(clube_atual is NOT NULL),
+    CONSTRAINT empresario_resp_cons CHECK(empresario_responsavel is NOT NULL),
+    CONSTRAINT valor_cons CHECK(valor > 0),
+    CONSTRAINT status_cons CHECK(status is NOT NULL),
+    CONSTRAINT tipo_status CHECK (UPPER(status) IN ('A-VENDA', 'LIBERADO',   'COM-CONTRATO')),
+    CONSTRAINT total_jogos_cons CHECK(total_jogos > 0),
+    CONSTRAINT gols_marcados_cons CHECK(gols_marcados is NOT NULL),
+    CONSTRAINT faltas_cometidas_cons CHECK(faltas_cometidas > 0),
+    CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
+    CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
+    CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
+    CONSTRAINT num_desarmes_volante_cons CHECK(num_desarmes > 0),
     CONSTRAINT passes_realizados_cons CHECK(passes_realizados > 0),
     CONSTRAINT passes_feitos_cons CHECK(passes_feitos <= passes_realizados)
-);
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
-CREATE TABLE meio_ofensivos OF Meio_Ofensivo
-    (CONSTRAINT num_passes_cons CHECK(num_passes_feitos > 0),
+CREATE TABLE meio_ofensivos OF Meio_Ofensivo(
+    CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
+    CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
+    CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
+    CONSTRAINT tipo_situacao_medica CHECK (UPPER(situacao_medica) IN ('CONTUNDIDO', 'VOLTANDO-CONTUSAO',   'SAUDAVEL')),
+    CONSTRAINT clube_dono_cons CHECK(clube_dono is NOT NULL),
+    CONSTRAINT clube_atual_cons CHECK(clube_atual is NOT NULL),
+    CONSTRAINT empresario_resp_cons CHECK(empresario_responsavel is NOT NULL),
+    CONSTRAINT valor_cons CHECK(valor > 0),
+    CONSTRAINT status_cons CHECK(status is NOT NULL),
+    CONSTRAINT tipo_status CHECK (UPPER(status) IN ('A-VENDA', 'LIBERADO',   'COM-CONTRATO')),
+    CONSTRAINT total_jogos_cons CHECK(total_jogos > 0),
+    CONSTRAINT gols_marcados_cons CHECK(gols_marcados is NOT NULL),
+    CONSTRAINT faltas_cometidas_cons CHECK(faltas_cometidas > 0),
+    CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
+    CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
+    CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
+    CONSTRAINT num_passes_cons CHECK(num_passes_feitos > 0),
     CONSTRAINT assistencias_cons CHECK(assistencias <= num_passes_feitos)
-);
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;
 
-CREATE TABLE atacantes OF Atacante
-    (CONSTRAINT num_finalizacao_cons CHECK(num_finalizacao > gols_marcados)
-);
-​
+CREATE TABLE atacantes OF Atacante(
+    CONSTRAINT nome_completo_jogador_cons CHECK(nome_completo is NOT NULL),
+    CONSTRAINT apelido_jog_cons CHECK(apelido is NOT NULL),
+    CONSTRAINT situacao_medica_cons CHECK(situacao_medica is NOT NULL),
+    CONSTRAINT tipo_situacao_medica CHECK (UPPER(situacao_medica) IN ('CONTUNDIDO', 'VOLTANDO-CONTUSAO',   'SAUDAVEL')),
+    CONSTRAINT clube_dono_cons CHECK(clube_dono is NOT NULL),
+    CONSTRAINT clube_atual_cons CHECK(clube_atual is NOT NULL),
+    CONSTRAINT empresario_resp_cons CHECK(empresario_responsavel is NOT NULL),
+    CONSTRAINT valor_cons CHECK(valor > 0),
+    CONSTRAINT status_cons CHECK(status is NOT NULL),
+    CONSTRAINT tipo_status CHECK (UPPER(status) IN ('A-VENDA', 'LIBERADO',   'COM-CONTRATO')),
+    CONSTRAINT total_jogos_cons CHECK(total_jogos > 0),
+    CONSTRAINT gols_marcados_cons CHECK(gols_marcados is NOT NULL),
+    CONSTRAINT faltas_cometidas_cons CHECK(faltas_cometidas > 0),
+    CONSTRAINT faltas_sofridas_cons CHECK(faltas_sofridas > 0),
+    CONSTRAINT cartoes_amarelo_cons CHECK(cartoes_amarelo > 0),
+    CONSTRAINT cartoes_vermelho_cons CHECK(cartoes_vermelho > 0),
+    CONSTRAINT data_nascimento_cons CHECK(data_nascimento IS NOT NULL),
+    CONSTRAINT num_finalizacao_cons CHECK(num_finalizacao > gols_marcados)
+)NESTED TABLE lista_clubes STORE AS lista_clubes_nt;

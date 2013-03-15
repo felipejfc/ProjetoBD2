@@ -39,8 +39,8 @@ CREATE OR REPLACE TYPE Serie AS OBJECT(
 /
 
 CREATE OR REPLACE TYPE Titulo AS OBJECT(
-    serie REF Serie,
-    nome VARCHAR2(30)
+    serie_titulo REF Serie,
+    numero INTEGER
 );
 /
 
@@ -86,7 +86,6 @@ CREATE OR REPLACE TYPE Jogador AS OBJECT(
     cartoes_amarelo INTEGER,
     cartoes_vermelho INTEGER,
     data_nascimento DATE
-       
 ) NOT FINAL;
 /
 
@@ -106,7 +105,7 @@ CREATE OR REPLACE TYPE Emprestimo AS OBJECT(
 );
 /
 
-CREATE OR REPLACE TYPE Atacante under Jogador(
+CREATE OR REPLACE TYPE Atacante UNDER Jogador(
     num_finalizacao INTEGER
 );
 /
