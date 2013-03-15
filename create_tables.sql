@@ -23,9 +23,8 @@ CREATE TABLE clubes OF Clube(
     CONSTRAINT nome_comum_cons_clube CHECK(nome_comum is NOT NULL),
     CONSTRAINT serie_atual_cons CHECK(serie_atual is NOT NULL),
     CONSTRAINT data_fundacao_cons CHECK(data_fundacao is NOT NULL),
-    CONSTRAINT num_titulos_cons CHECK(num_titulos_por_serie is NOT NULL),
     CONSTRAINT nome_estadio_cons CHECK(nome_estadio is NOT NULL)
-);
+)NESTED TABLE titulos_por_serie STORE AS titulos_por_serie_nt;
 
 CREATE TABLE vendas OF Venda(
     CONSTRAINT clube_vendedor_cons CHECK(clube_vendedor is NOT NULL),
